@@ -1,13 +1,15 @@
+import React from 'react';
 import Layout from '@/components/Layout/Layout';
-import IndividualPolling from '@/screens/IndividualPolling';
-import Image from 'next/image';
+import SummedResult from '@/screens/summedResult';
 
-export default function Home() {
+const page = () => {
   return (
     <Layout>
       <main className='flex h-80 items-center justify-between pt-10'>
-        <IndividualPolling />
+        <SummedResult />
       </main>
     </Layout>
   );
-}
+};
+
+export default page;

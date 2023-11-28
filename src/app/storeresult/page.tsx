@@ -1,13 +1,15 @@
 import Layout from '@/components/Layout/Layout';
-import IndividualPolling from '@/screens/IndividualPolling';
-import Image from 'next/image';
+import StoreResult from '@/screens/StoreResult';
+import React from 'react';
 
-export default function Home() {
+const page = () => {
   return (
     <Layout>
       <main className='flex h-80 items-center justify-between pt-10'>
-        <IndividualPolling />
+        <StoreResult />
       </main>
     </Layout>
   );
-}
+};
+
+export default page;
