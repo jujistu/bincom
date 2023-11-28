@@ -43,6 +43,7 @@ const IndividualPolling = () => {
 
   useEffect(() => {
     setOriginalPollingUnits(pollingUnits);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lgas]);
 
   const handleLgaChange = useCallback(

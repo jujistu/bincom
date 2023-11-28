@@ -1,5 +1,3 @@
-import { Request, Response } from 'express';
-
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
@@ -32,7 +30,7 @@ app.listen(port, () => {
 });
 
 //display the result for individual polling unit
-app.get('/polling_unit_result/:id', (req: Request, res: Response) => {
+app.get('/polling_unit_result/:id', (req: any, res: any) => {
   const pollingUnitId = req.params.id;
 
   // Fetch polling unit results from 'announced_pu_results'
@@ -54,7 +52,7 @@ app.get('/polling_unit_result/:id', (req: Request, res: Response) => {
 });
 
 // Summed Total Result for Polling Units under a Local Government:
-app.get('/local-government/:lgaId', (req: Request, res: Response) => {
+app.get('/local-government/:lgaId', (req: any, res: any) => {
   const lgaId = req.params.lgaId;
 
   const query = `SELECT
@@ -87,7 +85,7 @@ ORDER BY
 });
 
 // Store Results for All Parties for a New Polling Unit:
-app.post('/store_results', async (req: Request, res: Response) => {
+app.post('/store_results', async (req: any, res: any) => {
   try {
     const { polling_unit_uniqueid, results, entered_by_user } = req.body;
 
@@ -136,30 +134,6 @@ app.post('/store_results', async (req: Request, res: Response) => {
         }
       });
     });
-
-    //     db.query(
-    //       sql,
-    //       [
-    //         polling_unit_uniqueid,
-    //         partyAbbreviations,
-    //         partyScores,
-    //         entered_by_user,
-    //         new Date().toISOString(),
-    //         '192.168.1.102',
-    //       ],
-    //       (err: unknown, result: any) => {
-    //         if (err) {
-    //           console.error('Error inserting data: ' + err);
-    //           res.status(500).json({ error: 'Error inserting data' });
-    //           return;
-    //         }
-
-    //         console.log('Data inserted successfully:', result);
-    //         res.status(201).json({ message: 'Data inserted successfully' });
-    //       }
-    //     );
-
-    //     res.json({ message: 'Results inserted successfully' });
   } catch (error) {
     console.error('Error inserting results into the database: ', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -167,7 +141,7 @@ app.post('/store_results', async (req: Request, res: Response) => {
 });
 
 //get all the lga
-app.get('/getlga', (req: Request, res: Response) => {
+app.get('/getlga', (req: any, res: any) => {
   db.query('SELECT * FROM lga', (error: unknown, results: any) => {
     if (error) {
       console.error(error);
@@ -179,7 +153,7 @@ app.get('/getlga', (req: Request, res: Response) => {
 });
 
 //get all the states
-app.get('/getstates', (req: Request, res: Response) => {
+app.get('/getstates', (req: any, res: any) => {
   db.query('SELECT * FROM states', (error: unknown, results: any) => {
     if (error) {
       console.error(error);
@@ -191,7 +165,7 @@ app.get('/getstates', (req: Request, res: Response) => {
 });
 
 //get Party
-app.get('/getparty', (req: Request, res: Response) => {
+app.get('/getparty', (req: any, res: any) => {
   db.query('SELECT * FROM party', (error: unknown, results: any) => {
     if (error) {
       console.error(error);
@@ -203,7 +177,7 @@ app.get('/getparty', (req: Request, res: Response) => {
 });
 
 //get polling Unit
-app.get('/getpollingunit', (req: Request, res: Response) => {
+app.get('/getpollingunit', (req: any, res: any) => {
   db.query('SELECT * FROM polling_unit', (error: unknown, results: any) => {
     if (error) {
       console.error(error);
